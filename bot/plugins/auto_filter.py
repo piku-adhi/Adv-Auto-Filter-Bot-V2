@@ -60,6 +60,11 @@ async def auto_filter(bot, update):
     filters = await db.get_filters(group_id, query)
     
     if filters:
+        results.append(
+                [
+                    InlineKeyboardButton("🔘 JOIN OUR MAIN CHANNEL 🔘", url="https://t.me/Cp_hd")
+                ]
+            )
         for filter in filters: # iterating through each files
             file_name = filter.get("file_name")
             file_type = filter.get("file_type")
@@ -121,9 +126,9 @@ async def auto_filter(bot, update):
             
             results.append(
                 [
-                    InlineKeyboardButton(button_text, url=file_link)
-                ]
-            )
+                    InlineKeyboardButton(file_names, url=file_link),
+            InlineKeyboardButton(" 📂 " + f_size, url=file_link)
+        ])
         
     else:
         return # return if no files found for that query
